@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "./Menu";
 
-const Layout = ({title="Title",description="Description",classname,children}) => {
+const Layout = ({title="Title",description="Description",className,children}) => {
     return (
         <div>
         <Menu />
@@ -9,7 +9,7 @@ const Layout = ({title="Title",description="Description",classname,children}) =>
             <h2>{title}</h2>
             <p className="lead">{description}</p>
             </div>
-            <div className={classname} >
+            <div className={className} >
                 {children}
             </div>
         </div>

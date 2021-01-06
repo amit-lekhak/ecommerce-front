@@ -52,12 +52,16 @@ const Signin = (props) => {
   );
 
   const redirectUser = () => {
-    if (redirectToReferer || user) {
+    if (redirectToReferer) {
       if (user && user.role === 1) {
         return <Redirect to="/admin/dashboard" />;
       } else {
         return <Redirect to="/user/dashboard" />;
       }
+    }
+
+    if (user) {
+      return <Redirect to="/" />;
     }
   };
 

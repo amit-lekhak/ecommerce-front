@@ -7,3 +7,28 @@ export const getProducts = (sortBy) => {
     .then((response) => response.data)
     .catch((err) => err.response.data);
 };
+
+export const getCategories = () => {
+  return axios
+    .get(`${API}/categories`)
+    .then((response) => response.data)
+    .catch((err) => err.response.data);
+};
+
+export const getFilteredProducts = (skip, limit, filters) => {
+  const data = {
+    skip,
+    limit,
+    filters,
+  };
+  // console.log(data);
+  return axios
+    .post(`${API}/products/by/search/`, data, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => response.data)
+    .catch((err) => err.response.data);
+};

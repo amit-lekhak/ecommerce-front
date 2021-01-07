@@ -6,6 +6,7 @@ import Layout from "./Layout";
 const Home = (props) => {
   const [productsBySold, setProductsBySold] = useState([]);
   const [productsByArrival, setProductsByArrival] = useState([]);
+  // eslint-disable-next-line
   const [error, setError] = useState("");
 
   const loadProductsBySold = () => {
@@ -29,21 +30,28 @@ const Home = (props) => {
   };
 
   useEffect(() => {
-      loadProductsBySold()
-      loadProductsByArrival()
-  },[])
+    loadProductsBySold();
+    loadProductsByArrival();
+  }, []);
 
   return (
-    <Layout title="Home Page" description="React Node e-commerce App" className="container-fluid" >
-
+    <Layout
+      title="Home Page"
+      description="React Node e-commerce App"
+      className="container-fluid"
+    >
       <h2 className="mb-4">New Arrivals</h2>
-      <div className="row" >
-        {productsByArrival.map((product,index) => <Card key={index} product={product} /> )}
+      <div className="row">
+        {productsByArrival.map((product, index) => (
+          <Card key={index} product={product} />
+        ))}
       </div>
 
       <h2 className="mb-4">Best Sellers</h2>
-      <div className="row" >
-        {productsBySold.map((product,index) => <Card key={index} product={product} /> )}
+      <div className="row">
+        {productsBySold.map((product, index) => (
+          <Card key={index} product={product} />
+        ))}
       </div>
     </Layout>
   );

@@ -17,6 +17,7 @@ const Shop = () => {
   // eslint-disable-next-line
   const [error, setError] = useState("");
   const [skip, setSkip] = useState(0);
+  // eslint-disable-next-line
   const [limit, setLimit] = useState(6);
   const [size, setSize] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);

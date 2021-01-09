@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const Radio = ({ prices,handleFilters }) => {
 
+  // eslint-disable-next-line
     const [value,setValue] = useState(0);
 
   const onChangeHandler = (event) => {

@@ -1,5 +1,6 @@
 import { API } from "../config";
 import axios from "axios";
+import queryString from "query-string";
 
 export const getProducts = (sortBy) => {
   return axios
@@ -29,6 +30,14 @@ export const getFilteredProducts = (skip, limit, filters) => {
         "Content-Type": "application/json",
       },
     })
+    .then((response) => response.data)
+    .catch((err) => err.response.data);
+};
+
+export const searchList = (params) => {
+  const query = queryString.stringify(params);
+  return axios
+    .get(`${API}/products/search?${query}`)
     .then((response) => response.data)
     .catch((err) => err.response.data);
 };

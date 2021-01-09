@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
 import { getCategories, getFilteredProducts } from "./apiCore";
@@ -48,7 +49,6 @@ const Shop = () => {
   useEffect(() => {
     init();
     loadFilteredResults(myFilters.filters);
-    // eslint-disable-next-line
   }, []);
 
   const handleFilters = (filters, filterBy) => {
@@ -128,7 +128,9 @@ const Shop = () => {
 
           <div className="row">
             {filteredResults.map((product, index) => (
-              <Card key={index} product={product} />
+              <div key={index} className="col-4 mb-3">
+                <Card product={product} />
+              </div>
             ))}
           </div>
           <hr />

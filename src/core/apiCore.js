@@ -41,3 +41,17 @@ export const searchList = (params) => {
     .then((response) => response.data)
     .catch((err) => err.response.data);
 };
+
+export const getSingleProduct = (productId) => {
+  return axios
+    .get(`${API}/product/${productId}`)
+    .then((response) => response.data)
+    .catch((err) => err.response.data);
+};
+
+export const getRelatedList = (productId) => {
+  return axios
+    .get(`${API}/products/related/${productId}`)
+    .then((response) => response.data)
+    .catch((err) => err.response.data);
+};

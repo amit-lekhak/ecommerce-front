@@ -26,10 +26,18 @@
 .black-6 {
   background: #bfbfbf;
 }
-.black-5{
+.black-5 {
   background: #b3b3b3;
 }
 
+.cart-badge,
+.cart-badge:hover {
+  border-radius: 50%;
+  padding: 2px;
+  font-size: 12px;
+  font-style: italic;
+  background: black;
+}
 
 .product-img {
   min-height: 100px;

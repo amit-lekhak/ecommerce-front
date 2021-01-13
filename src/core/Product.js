@@ -6,6 +6,7 @@ import Layout from "./Layout";
 
 const Product = (props) => {
   const [product, setProduct] = useState({});
+  // eslint-disable-next-line
   const [error, setError] = useState("");
   const [relatedProducts, setRelatedProducts] = useState([]);
 
@@ -50,12 +51,14 @@ const Product = (props) => {
           )}
         </div>
         <div className="col-4">
-            <h4>Related products</h4>
-            {relatedProducts.map((rproducts,index) => {
-               return <div className="mb-3" key={index}>
+          <h4>Related products</h4>
+          {relatedProducts.map((rproducts, index) => {
+            return (
+              <div className="mb-3" key={index}>
                 <Card product={rproducts} />
-                </div>
-            })}
+              </div>
+            );
+          })}
         </div>
       </div>
     </Layout>

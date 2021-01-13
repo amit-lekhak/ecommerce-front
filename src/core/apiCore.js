@@ -55,3 +55,32 @@ export const getRelatedList = (productId) => {
     .then((response) => response.data)
     .catch((err) => err.response.data);
 };
+
+
+export const getBraintreeClientToken = (userId,token) => {
+  return axios
+    .get(`${API}/braintree/getToken/${userId}`,{
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    })
+    .then((response) => response.data)
+    .catch((err) => err.response.data);
+};
+
+export const processPayment = (userId,token,paymentData) => {
+  return axios
+    .post(`${API}/braintree/payment/${userId}`,paymentData,{
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    
+    })
+    .then((response) => response.data)
+    .catch((err) => err.response.data);
+};
+

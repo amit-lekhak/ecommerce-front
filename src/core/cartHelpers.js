@@ -54,21 +54,27 @@ export const updateItem = (id, count) => {
   }
 };
 
-
 export const removeItem = (id) => {
-    let cart = [];
-    if (typeof window !== "undefined") {
-      if (localStorage.getItem("cart")) {
-        cart = JSON.parse(localStorage.getItem("cart"));
-        // eslint-disable-next-line array-callback-return
-        cart.map((product, index) => {
-          if (product._id === id) {
-            cart.splice(index,1);
-          }
-        });
-  
-        localStorage.setItem("cart", JSON.stringify(cart));
-      }
+  let cart = [];
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
+      // eslint-disable-next-line array-callback-return
+      cart.map((product, index) => {
+        if (product._id === id) {
+          cart.splice(index, 1);
+        }
+      });
+
+      localStorage.setItem("cart", JSON.stringify(cart));
     }
-    return cart;
-  };
+  }
+  return cart;
+};
+
+export const removeCart = (next) => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("cart");
+    next();
+  }
+};

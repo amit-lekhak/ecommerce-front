@@ -84,3 +84,16 @@ export const processPayment = (userId,token,paymentData) => {
     .catch((err) => err.response.data);
 };
 
+export const createOrder = (userId,token,orderData) => {
+  return axios
+    .post(`${API}/order/create/${userId}`,{order: orderData},{
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    
+    })
+    .then((response) => response.data)
+    .catch((err) => err.response.data);
+};

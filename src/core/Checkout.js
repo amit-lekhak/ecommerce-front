@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import DropIn from "braintree-web-drop-in-react";
-import { getBraintreeClientToken, processPayment } from "./apiCore";
+import {
+  createOrder,
+  getBraintreeClientToken,
+  processPayment,
+} from "./apiCore";
 import { removeCart } from "./cartHelpers";
 
 const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
@@ -70,16 +74,45 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
 
         processPayment(userId, token, paymentData)
           .then((response) => {
-            setData({
-              ...data,
-              success: response.success,
-              error: response.message ? response.message : "",
-            });
-            setLoading(false);
-            removeCart(() => {
-              console.log("Success and empty cart");
-              setRun(!run);
-            });
+            //create order
+            //empty cart
+
+            if (response.success) {
+              const orderData = {
+                products: products,
+                transaction_id: response.transaction.id,
+                amount: response.transaction.amount,
+                address: data.address,
+              };
+
+              createOrder(userId, token, orderData)
+                .then((res) => {
+                  console.log("CO: ", res);
+                  if (res.error) {
+                    // setData({...data,error: res.error,success: response.success});
+                    console.log("res.error", res.error);
+                  }
+                    removeCart(() => {
+                      console.log("Success and empty cart");
+                      setRun(!run);
+                    });
+                  
+                  setData({ ...data, success: true });
+                  setLoading(false);
+                })
+                .catch((error) => {
+                  console.log("catch error", error);
+                  setData({ ...data, success: true });
+                  setLoading(false);
+                });
+            } else {
+              setData({
+                ...data,
+                success: response.success,
+                error: response.message ? response.message : "",
+              });
+              setLoading(false);
+            }
           })
           .catch((error) => {
             console.log(error);
@@ -93,23 +126,39 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
       });
   };
 
+  const addressChangeHandler = (event) => {
+    setData({ ...data, address: event.target.value });
+  };
+
   const showDropIn = () => {
     return (
-      <div>
+      <div onBlur={() => setData({ ...data, error: "" })}>
         {data.clientToken !== null && products.length > 0 ? (
           <div>
-            <DropIn
-              options={{
-                authorization: data.clientToken,
-                paypal: {
-                  flow: "vault",
-                },
-              }}
-              onInstance={(instance) => (data.instance = instance)}
-            />
-            <button onClick={pay} className="btn btn-success btn-block">
-              Pay
-            </button>
+            <div className="form-group mb-3">
+              <label className="text-muted">Delivery address:</label>
+              <textarea
+                onChange={addressChangeHandler}
+                className="form-control"
+                value={data.address}
+                placeholder="Type your delivery address here..."
+              />
+            </div>
+
+            <div>
+              <DropIn
+                options={{
+                  authorization: data.clientToken,
+                  paypal: {
+                    flow: "vault",
+                  },
+                }}
+                onInstance={(instance) => (data.instance = instance)}
+              />
+              <button onClick={pay} className="btn btn-success btn-block">
+                Pay
+              </button>
+            </div>
           </div>
         ) : null}
       </div>
@@ -137,7 +186,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
   const showLoading = () => loading && <h2>Loading...</h2>;
 
   return (
-    <div onBlur={() => setData({ ...data, error: "" })}>
+    <div>
       <h2>Total: ${getTotal(products)}</h2>
       {showSuccess(data.success)}
       {showError(data.error)}

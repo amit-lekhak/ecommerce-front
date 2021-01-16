@@ -22,7 +22,7 @@ const AddCategory = () => {
     setError(false);
     setSuccess(false);
     //add api request
-    console.log(user._id,token,name);
+    console.log(user._id, token, name);
     createCategory(user._id, token, name).then((data) => {
       if (data.error) {
         setError(true);
@@ -74,6 +74,7 @@ const AddCategory = () => {
     <Layout
       title="Add a new category"
       description={`G'day ${user.name}!, ready to create a new category?`}
+      className="container mb-3"
     >
       <div className="col-md-8 offset-md-2">
         {showSuccess()}

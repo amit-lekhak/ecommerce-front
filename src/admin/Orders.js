@@ -4,7 +4,7 @@ import { isAuthenticated } from "../auth";
 import { listOrders } from "./apiAdmin";
 import Layout from "../core/Layout";
 import moment from "moment";
-import { getStatusValues,updateOrderStatus } from "./apiAdmin";
+import { getStatusValues, updateOrderStatus } from "./apiAdmin";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -40,7 +40,7 @@ const Orders = () => {
   const showMessageByLength = () => {
     if (orders.length > 0) {
       return (
-        <h1 className="text-danger display-2">Total orders: {orders.length}</h1>
+        <h1 className="text-danger display-5">Total orders: {orders.length}</h1>
       );
     } else {
       return <h1 className="text-danger">No orders available</h1>;
@@ -59,14 +59,15 @@ const Orders = () => {
   };
 
   const statusChangeHandler = (event, orderId) => {
-    updateOrderStatus(user._id, token, orderId, event.target.value)
-    .then((response) => {
-      if (response.error) {
-        console.log(response.error);
-      } else {
-        loadOrders();
+    updateOrderStatus(user._id, token, orderId, event.target.value).then(
+      (response) => {
+        if (response.error) {
+          console.log(response.error);
+        } else {
+          loadOrders();
+        }
       }
-    });
+    );
   };
 
   const showStatus = (order) => {
@@ -92,6 +93,7 @@ const Orders = () => {
     <Layout
       title="Add a new category"
       description={`G'day ${user.name}!, you can manage all the orders here`}
+      className="container mb-3"
     >
       <div className="row">
         <div className="col-md-8 offset-md-2">

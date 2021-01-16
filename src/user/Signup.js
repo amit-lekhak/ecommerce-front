@@ -96,7 +96,7 @@ const Signup = (props) => {
     <Layout
       title="Signup Page"
       description="Signup to React Node e-commerce App"
-      className="conatiner col-md-8 offset-md-2"
+      className="conatiner col-md-8 offset-md-2 mb-3"
     >
       {showError}
       {showSuccess}

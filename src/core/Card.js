@@ -73,19 +73,22 @@ const Card = ({
 
   const shouldRedirect = (redirect) => {
     if (redirect) {
-      return <Redirect to="/cart" />;
+      return <Redirect to="/" />;
     }
   };
 
   const onChangeHandler = (productId) => (event) => {
     setRun(!run);
-    setCount(event.target.value < 1 ? 1 : event.target.value);
-    if (event.target.value >= 1) {
-      updateItem(productId, event.target.value);
+    const value = event.target.value < 1 ? 1 : 
+    event.target.value <= product.quantity ? event.target.value : 
+    product.quantity;
+    setCount(value);
+    if (value) {
+      updateItem(productId, value);
     }
   };
 
-  const showUpdateOptions = (showUpdate) => {
+  const showUpdateOptions = (showUpdate, quantity) => {
     return (
       showUpdate && (
         <div>
@@ -97,6 +100,8 @@ const Card = ({
               type="number"
               className="form-control"
               value={count}
+              min="1"
+              max={quantity}
               onChange={onChangeHandler(product._id)}
             />
           </div>
@@ -125,7 +130,7 @@ const Card = ({
         {viewProductButton(showViewProductButton)}
         {addToCartButton(showAddToCartButton)}
         {removeProductButton(showRemoveProductButton)}
-        {showUpdateOptions(showUpdate)}
+        {showUpdateOptions(showUpdate,product.quantity)}
       </div>
     </div>
   );

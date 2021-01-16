@@ -73,3 +73,52 @@ export const updateOrderStatus = (userId, token,orderId,status) => {
     .then((response) => response.data)
     .catch((err) => err.response.data);
 };
+
+
+/**
+ * Crud on products
+ * single/all/update/delete
+ */
+
+export const getProducts = () => {
+  return axios
+    .get(`${API}/products/?limit=undefined`)
+    .then((response) => response.data)
+    .catch((err) => err.response.data);
+};
+
+
+export const deleteProduct = (userId, token,productId) => {
+  return axios
+    .delete(`${API}/product/${productId}/${userId}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response.data)
+    .catch((err) => err.response.data);
+};
+
+
+export const getProduct = (productId) => {
+  return axios
+    .get(`${API}/product/${productId}`)
+    .then((response) => response.data)
+    .catch((err) => err.response.data);
+};
+
+
+export const updateProduct = (userId, token,productId,product) => {
+  return axios
+    .put(`${API}/product/${productId}/${userId}`,product, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response.data)
+    .catch((err) => err.response.data);
+};

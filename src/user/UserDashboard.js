@@ -70,7 +70,7 @@ const Dashboard = () => {
           <li className="list-group-item">
             {history.map((h, hIndex) => {
               return (
-                <div>
+                <div key={hIndex}>
                   <hr />
                   {h.products.map((product, pIndex) => {
                     return (
@@ -99,9 +99,9 @@ const Dashboard = () => {
       className="container-fluid"
     >
       <div className="row">
-        <div className="col-3">{userLinks()}</div>
+        <div className="col-lg-4 col-md-5">{userLinks()}</div>
 
-        <div className="col-9">
+        <div className="col-lg-8 col-md-7">
           {userInfo()}
           {purchaseHistory(history)}
         </div>

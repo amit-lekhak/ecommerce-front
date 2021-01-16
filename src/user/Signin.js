@@ -3,7 +3,7 @@ import Layout from "../core/Layout";
 import { signin, authenticateStore, isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
 
-const Signin = (props) => {
+const Signin = () => {
   const [values, setValues] = useState({
     email: "amit@gmail.com",
     password: "111111",
@@ -97,7 +97,7 @@ const Signin = (props) => {
     <Layout
       title="Signin Page"
       description="Signin to React Node e-commerce App"
-      className="conatiner col-md-8 offset-md-2"
+      className="conatiner col-md-8 offset-md-2 mb-3"
     >
       {showError}
       {showLoading}

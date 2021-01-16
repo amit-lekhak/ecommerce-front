@@ -15,6 +15,7 @@ const Profile = (props) => {
   });
 
   const { token } = isAuthenticated();
+  // eslint-disable-next-line
   const { name, email, password, error, success } = values;
 
   const init = (userId) => {
@@ -107,7 +108,7 @@ const Profile = (props) => {
     <Layout
       title="Profile"
       description={`G'day ${name}. You can update your profile here`}
-      className="container"
+      className="container mb-3"
     >
       <h2 className="mb-4">Profile Update</h2>
       {profileUpdateForm(name, email, password)}

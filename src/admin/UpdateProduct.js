@@ -213,7 +213,11 @@ const UpdateProduct = (props) => {
   );
 
   const showLoading = loading && (
-    <h3 className="alert alert-success">Loading...</h3>
+    <div class="d-flex justify-content-center">
+      <div className="spinner-grow" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+    </div>
   );
 
   const redirectUser = () => {

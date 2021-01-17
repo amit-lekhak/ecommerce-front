@@ -92,11 +92,11 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
                     // setData({...data,error: res.error,success: response.success});
                     console.log("res.error", res.error);
                   }
-                    removeCart(() => {
-                      console.log("Success and empty cart");
-                      setRun(!run);
-                    });
-                  
+                  removeCart(() => {
+                    console.log("Success and empty cart");
+                    setRun(!run);
+                  });
+
                   setData({ ...data, success: true });
                   setLoading(false);
                 })
@@ -183,7 +183,14 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
     </div>
   );
 
-  const showLoading = () => loading && <h2>Loading...</h2>;
+  const showLoading = () =>
+    loading && (
+      <div class="d-flex justify-content-center">
+        <div className="spinner-grow" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
+    );
 
   return (
     <div>

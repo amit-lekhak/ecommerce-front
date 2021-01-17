@@ -22,7 +22,7 @@ export const getFilteredProducts = (skip, limit, filters) => {
     limit,
     filters,
   };
-  // console.log(data);
+  // data.filters.price = [20,90];
   return axios
     .post(`${API}/products/by/search/`, data, {
       headers: {

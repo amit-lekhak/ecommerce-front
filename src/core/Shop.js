@@ -99,6 +99,9 @@ const Shop = () => {
     );
   };
 
+  const noProductAvailableMessage = (size) =>
+    size <= 0 && <h3 className="text text-success">No Results found</h3>;
+
   return (
     <Layout
       title="Shop Page"
@@ -134,6 +137,8 @@ const Shop = () => {
             ))}
           </div>
           <hr />
+          {noProductAvailableMessage(size)}
+
           {loadMoreButton()}
         </div>
       </div>

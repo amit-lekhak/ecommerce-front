@@ -40,8 +40,8 @@ export const signout = (next) => {
 
   axios
     .get(`${API}/signout`)
-    .then((response) => console.log(response))
-    .catch((err) => console.log(err));
+    .then((response) => response.data)
+    .catch((err) => console.log(err.response.data));
 };
 
 export const isAuthenticated = () => {

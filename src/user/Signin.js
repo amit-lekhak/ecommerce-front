@@ -46,8 +46,10 @@ const Signin = () => {
   );
 
   const showLoading = loading && (
-    <div className="alert alert-info">
-      <h2>Loading...</h2>
+    <div class="d-flex justify-content-center">
+      <div className="spinner-grow" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
     </div>
   );
 
@@ -100,7 +102,7 @@ const Signin = () => {
       className="conatiner col-md-8 offset-md-2 mb-3"
     >
       {showError}
-      {showLoading}
+      {showLoading }
       {signinForm}
       {redirectUser()}
     </Layout>

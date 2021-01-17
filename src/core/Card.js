@@ -73,7 +73,7 @@ const Card = ({
 
   const shouldRedirect = (redirect) => {
     if (redirect) {
-      return <Redirect to="/" />;
+      return <Redirect to="/cart" />;
     }
   };
 

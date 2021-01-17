@@ -70,8 +70,8 @@ const AddProduct = () => {
         setValues({ ...values, error: data.error, loading: false });
       } else {
         fileRef.current.value = "";
-        selectRef1.current.value="Please select";
-        selectRef2.current.value="Please select";
+        selectRef1.current.value = "Please select";
+        selectRef2.current.value = "Please select";
 
         setValues({
           ...values,
@@ -134,7 +134,11 @@ const AddProduct = () => {
 
       <div className="form-group">
         <label className="text-muted">Category</label>
-        <select ref={selectRef1} onChange={onChangeHandler("category")} className="form-control">
+        <select
+          ref={selectRef1}
+          onChange={onChangeHandler("category")}
+          className="form-control"
+        >
           <option>Please select</option>
           {categories &&
             categories.map((item, index) => (
@@ -147,7 +151,11 @@ const AddProduct = () => {
 
       <div className="form-group">
         <label className="text-muted">Shipping</label>
-        <select ref={selectRef2} onChange={onChangeHandler("shipping")} className="form-control">
+        <select
+          ref={selectRef2}
+          onChange={onChangeHandler("shipping")}
+          className="form-control"
+        >
           <option>Please select</option>
           <option value="0">No</option>
           <option value="1">Yes</option>
@@ -177,7 +185,11 @@ const AddProduct = () => {
   );
 
   const showLoading = loading && (
-    <h3 className="alert alert-success">Loading...</h3>
+    <div class="d-flex justify-content-center">
+      <div className="spinner-grow" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+    </div>
   );
 
   return (

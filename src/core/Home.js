@@ -37,12 +37,13 @@ const Home = (props) => {
 
   return (
     <Layout
-      title="Home Page"
+      title="MERN Stack App"
       description="React Node e-commerce App"
       className="container-fluid"
     >
       <Search />
       <h2 className="mb-4">New Arrivals</h2>
+      {productsByArrival && productsByArrival.length === 0 && <h3 className="text text-success">No products available</h3>}
       <div className="row">
         {productsByArrival.map((product, index) => (
           <div key={index} className="col-lg-3 col-sm-12 col-md-6 mb-3">
@@ -50,8 +51,10 @@ const Home = (props) => {
           </div>
         ))}
       </div>
-
+<hr />
       <h2 className="mb-4">Best Sellers</h2>
+      {productsBySold && productsBySold.length === 0 && <h3 className="text text-success">No products available</h3>}
+
       <div className="row">
         {productsBySold.map((product, index) => (
           <div key={index} className="col-lg-3 col-sm-12 col-md-4 mb-3">

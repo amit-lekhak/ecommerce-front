@@ -68,6 +68,7 @@ const Dashboard = () => {
         <h3 className="card-header">Purchase History</h3>
         <ul className="list-group">
           <li className="list-group-item">
+          {history && history.length === 0 && <h3 className="text text-success">No History available</h3>}
             {history.map((h, hIndex) => {
               return (
                 <div key={hIndex}>

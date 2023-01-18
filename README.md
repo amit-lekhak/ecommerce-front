@@ -4,7 +4,7 @@
 
 
 ### Frontend Deployed At
- > http://buyabook.herokuapp.com/
+ > https://buyabook.onrender.com
 
 
 ### Install Dependencies (Frontend)
